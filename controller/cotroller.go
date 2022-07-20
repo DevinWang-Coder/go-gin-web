@@ -30,6 +30,12 @@ func (controller *UserController) UserAdd(context *gin.Context)  {
 func (controller *UserController) UserQuery(context *gin.Context)  {
 	id := context.Query("id")
 	println("id: ", id)
+	if id >= "100" {
+		context.JSON(403, gin.H{
+			"msg": "id错误",
+		})
+	}
+
 	context.JSON(http.StatusOK, gin.H{
 		"id": id,
 	})
